@@ -13,6 +13,8 @@ const Header = ({ siteTitle }) => (
       <Nav className="justify-content-end">
         <Nav.Item>
           <Nav.Link href="/gurps-mashup">GURPS Mashup</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           <Nav.Link href="/discovery">Discoveries</Nav.Link>
         </Nav.Item>
       </Nav>
