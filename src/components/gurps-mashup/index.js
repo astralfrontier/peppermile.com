@@ -22,7 +22,7 @@ const ChosenBook = ({ name, url, imageUrl }) => (
         alt={name}
       />
       <Figure.Caption>
-        <a href={url}>{name}</a>
+        <a target={"_blank"} rel={"nofollow"} href={url}>{name}</a>
       </Figure.Caption>
     </Figure>
   </Col>
