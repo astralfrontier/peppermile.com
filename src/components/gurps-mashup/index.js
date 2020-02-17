@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react"
-import clone from "ramda/es/clone"
-import map from "ramda/es/map"
-import propEq from "ramda/es/propEq"
-import reject from "ramda/es/reject"
-import remove from "ramda/es/remove"
+
+import { map, propEq, reject } from "ramda"
 
 import Button from "react-bootstrap/Button"
 import Figure from "react-bootstrap/Figure"
@@ -11,6 +8,8 @@ import Form from "react-bootstrap/Form"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+
+import { sample } from '../../utils'
 
 const ChosenBook = ({ name, url, imageUrl }) => (
   <Col key={url} md={"auto"}>
@@ -22,7 +21,7 @@ const ChosenBook = ({ name, url, imageUrl }) => (
         alt={name}
       />
       <Figure.Caption>
-        <a target={"_blank"} rel={"nofollow"} href={url}>{name}</a>
+        <a target={"_blank"} rel={"nofollow noopener noreferrer"} href={url}>{name}</a>
       </Figure.Caption>
     </Figure>
   </Col>
@@ -35,15 +34,8 @@ const GurpsMashup = _props => {
 
   function chooseNewBooks() {
     if (gurpsMashupData.length >= bookCount) {
-      let books = clone(gurpsMashupData)
-      const items = []
-      for(let i = 0; i < bookCount; i++) {
-        const idx = Math.floor(Math.random() * books.length)
-        items.push(books[idx])
-        books = remove(idx, 1, books)
-      }
-      console.log(items)
-      setChosenBooks(items)
+      const books = sample(gurpsMashupData, bookCount)
+      setChosenBooks(books)
     }
   }
 
@@ -57,7 +49,6 @@ const GurpsMashup = _props => {
       const data = await raw.json()
       const books = reject(propEq("skip", true), data.books)
       setGurpsMashupData(books)
-      chooseNewBooks(books)
     }
     fetchData().catch(e => window.alert(e.message))
   }, [])

@@ -6,7 +6,7 @@ const remarkPlugins = [
     resolve: `gatsby-remark-external-links`,
     options: {
       target: `_blank`,
-      rel: `nofollow`
+      rel: `nofollow noopener noreferrer`
     }
   }
 ]
