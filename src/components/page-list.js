@@ -74,9 +74,11 @@ const BlogList = ({
         const title = node.frontmatter.title || node.fields.slug
         return (<Row key={node.fields.slug}><Col><Link to={node.frontmatter.path}>{title}</Link></Col></Row>)
       })}
+      {(numPages > 1) && (
       <Row className="justify-content-md-center">
         <Col md="auto">{paginationFor("", numPages, currentPage)}</Col>
       </Row>
+      )}
     </Container>
   </Layout>
 )

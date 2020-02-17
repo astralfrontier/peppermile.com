@@ -44,7 +44,7 @@ exports.createPages = async ({
 
   const pageListTemplate = path.resolve(`src/components/page-list.js`)
   const pageTemplate = path.resolve(`src/components/page.js`)
-  const postsPerPage = 2
+  const postsPerPage = 6
 
   const posts = result.data.allMarkdownRemark.edges
   const numPages = Math.ceil(posts.length / postsPerPage)
